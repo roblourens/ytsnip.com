@@ -1,0 +1,116 @@
+html {
+    background-color: #E8E9EE;
+}
+
+body {
+    font-family: "Helvetica Neue", "Helvetica";
+}
+
+#title {
+    margin: 30px;
+    font-size:40px;
+    text-align:center;
+}
+
+#vidArea {
+    width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#videoDiv {
+    width: 720px;
+    height: 405px;
+}
+
+#controls {
+    position: relative;
+    display: none;
+    height: 20px;
+    width: 720px;
+}
+
+#startMarkBar, #endMarkBar {
+    background-color: DarkGray;
+    height: 15px;
+    display: inline;
+    width: 0px;
+    z-index: -1;
+}
+
+#endMarkBar {
+    float: right;
+}
+
+#startMarkBar {
+    float: left;
+}
+
+#startMark, #endMark {
+    position: absolute;
+    top: 0px;
+    cursor: col-resize;
+    height: 15px;
+    width: 9px;
+    z-index: 1;
+}
+
+#startMark {
+    background-color: #00004C;
+    left: 0px;
+}
+
+#endMark {
+    background-color: #4C0F00;
+    left: 711px;
+}
+
+#vidUrl {
+    width:250px;
+}
+
+#inputErr {
+    color: red;
+    font-size: 10px;
+    display: none;
+    text-align: center;
+}
+
+#inputForm {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+} 
+
+#startForm {
+    position:absolute;
+    left: 0px;
+    top: 30px;
+}
+
+#endForm {
+    position:absolute;
+    top: 30px;
+    right: 0px;
+}
+
+#endTime, #startTime {
+    width: 80px;
+}
+
+#playButton {
+    position: absolute;
+    top: 30px;
+    left: 330px;
+    display: inline;
+}
+
+#result {
+    position: absolute;
+    top: 65px;
+}
+
+#resultURL {
+    width: 400px;
+}
