@@ -59,12 +59,17 @@
         <form id='inputForm' action='javascript: loadVid()'>Video URL or ID: <input id='vidUrl' /><input type='submit' value=\"Load for snippin'\" /></form><div id='inputErr'>There's something wrong with that input... try again</div>"; ?>
         <div id='videoDiv'></div>
         <div id='controls'>
+            <div id='bars'>
             <div id='startMarkBar'><div id='startMark'></div></div>
             <div id='endMarkBar'><div id='endMark'></div></div>
+            </div>
 <?php if (!$play) echo "
             <form id='startForm' action='javascript: updateMarks()'><input id='startTime' /></form>
             <button id='playButton' onMouseUp='javascript: play()'>Play clip</button>
             <form id='endForm' action='javascript: updateMarks()'><input id='endTime' /></form>
+            <input type='checkbox' id='loopCB' /><span class='option'>Loop</span>
+            <input type='checkbox' id='chromelessCB' /><span class='option'>No controls</span>
+            <input type='checkbox' id='muteCB' /><span class='option'>Mute</span>
             <form id='result'>Link to this clip: <input id='resultURL' /></form>
         </div>"; ?>
     </div>
