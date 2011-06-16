@@ -10,8 +10,12 @@ google.setOnLoadCallback(setup);
 function setup() {
     var params = { allowScriptAccess: "always" };
     var atts = { id: "ytPlayer" };
-    swfobject.embedSWF("http://www.youtube.com/e/"+vId+"?enablejsapi=1&version=3",
-            "videoDiv", "720", "405", "8", null, null, params, atts);
+    if (chromeless)
+        swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&version=3",
+                "videoDiv", "720", "405", "8", null, null, params, atts);
+    else 
+        swfobject.embedSWF("http://www.youtube.com/e/"+vId+"?enablejsapi=1&version=3",
+                "videoDiv", "720", "405", "8", null, null, params, atts);
 }
 
 function setupMark(id, left) {
@@ -28,6 +32,9 @@ function checkStart() {
 
 function onYouTubePlayerReady(playerId) {
     ytplayer = $("#ytPlayer")[0];
+    
+    if (chromeless)
+        ytplayer.loadVideoById(vId, start);
 
     play();
     setupMark('startMark', timeToXCoord(start));
@@ -38,7 +45,12 @@ function onYouTubePlayerReady(playerId) {
 }
 
 function play() {
-    ytplayer.seekTo(start);
+    if (mute)
+        ytplayer.setVolume(0);
+
+    if (!chromeless)
+        ytplayer.seekTo(start);
+
     ytplayer.playVideo();
 }
 
@@ -49,5 +61,8 @@ function timeToXCoord(secs) {
 function checkFinished() {
     if (ytplayer.getPlayerState() >= 1 && ytplayer.getPlayerState() != 2)
         if (ytplayer.getCurrentTime() >= end)
-            ytplayer.pauseVideo();
+            if (loop)
+                ytplayer.seekTo(start);
+            else
+                ytplayer.pauseVideo();
 }
