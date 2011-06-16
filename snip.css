@@ -19,14 +19,17 @@ body {
     display: block;
 }
 
+#controls {
+    visibility: hidden;
+}
+
 #videoDiv {
     width: 720px;
     height: 405px;
 }
 
-#controls {
+#bars {
     position: relative;
-    display: none;
     height: 20px;
     width: 720px;
 }
@@ -84,33 +87,37 @@ body {
 } 
 
 #startForm {
-    position:absolute;
-    left: 0px;
-    top: 30px;
+    display: inline;
 }
 
 #endForm {
-    position:absolute;
-    top: 30px;
-    right: 0px;
+    display:inline;
+    float: right;
 }
 
 #endTime, #startTime {
     width: 80px;
+    margin: 0px;
 }
 
 #playButton {
-    position: absolute;
-    top: 30px;
-    left: 330px;
     display: inline;
+    margin-left: 245px;
+    margin-right: 245px;
 }
 
 #result {
-    position: absolute;
-    top: 65px;
 }
 
 #resultURL {
     width: 400px;
+}
+
+#controls > input {
+    margin: 10px 0px 10px;
+}
+
+.option {
+    margin-right: 10px;
+    margin-left: 5px;
 }
