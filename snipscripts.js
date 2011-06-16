@@ -195,11 +195,11 @@ function updateMarks() {
 
 function play() {
     // Hide and mute the player, save the previously set volume
-    $('#ytPlayer').css('visibility', 'hidden');
+    /*$('#ytPlayer').css('visibility', 'hidden');
     volume = ytplayer.getVolume();
-    ytplayer.setVolume(0);
+    ytplayer.setVolume(0);*/
 
-    intervalCode = setInterval(checkStart, 100);
+    //intervalCode = setInterval(checkStart, 100);
     ytplayer.seekTo(startTime());
     ytplayer.playVideo();
 }

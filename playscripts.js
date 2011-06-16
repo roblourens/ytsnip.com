@@ -2,7 +2,6 @@ var pad = 6;
 var controlsW = 717;
 var handleW = 3;
 var googleLoaded = false;
-var checkStartIntervalId;
 
 google.load("jquery", "1.6.1");
 google.setOnLoadCallback(setup);
@@ -24,24 +23,18 @@ function setupMark(id, left) {
 function checkStart() {
     if (ytplayer.getPlayerState() >= 1 && ytplayer.getCurrentTime() >= start) {
         clearInterval(checkStartIntervalId);
-
-        console.log('started');
-        ytplayer.setVolume(100);
-        $('#controls').show();
-
-        setInterval(checkFinished, 250);
     }
 }
 
 function onYouTubePlayerReady(playerId) {
     ytplayer = $("#ytPlayer")[0];
-    //ytplayer.setVolume(0);
 
-    console.log('ready');
-    checkStartIntervalId = setInterval(checkStart, 250);
     play();
     setupMark('startMark', timeToXCoord(start));
     setupMark('endMark', timeToXCoord(end));
+
+    $('#controls').show();
+    setInterval(checkFinished, 250);
 }
 
 function play() {
