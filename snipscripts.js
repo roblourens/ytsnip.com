@@ -3,6 +3,8 @@ var origStartZero = 0;
 var controlsW = 711;
 var handleW = 9;
 var vId = '';
+var intervalCode = 0;
+var volume = 100;
 
 google.load("jquery", "1.6.1");
 google.load("jqueryui", "1.8.13");
@@ -11,9 +13,12 @@ function onYouTubePlayerReady(playerId) {
     ytplayer = $("#ytPlayer")[0];
     ytplayer.playVideo();
     ytplayer.pauseVideo();
-    setInterval(checkFinished, 250);
+    setInterval(checkFinished, 200);
     updateTimes();
     updateResultURL();
+
+    // Make the area visible
+    $('#controls').css('visibility', 'visible');
 }
 
 function validateAndGetId(input) {
@@ -189,16 +194,35 @@ function updateMarks() {
 }
 
 function play() {
-    console.log(startTime());
+    // Hide and mute the player, save the previously set volume
+    $('#ytPlayer').css('visibility', 'hidden');
+    volume = ytplayer.getVolume();
+    ytplayer.setVolume(0);
+
+    intervalCode = setInterval(checkStart, 100);
     ytplayer.seekTo(startTime());
     ytplayer.playVideo();
 }
 
+// Constantly runs to pause when finished
 function checkFinished() {
     if (ytplayer.getPlayerState() >= 1 && ytplayer.getPlayerState() != 2)
         if (ytplayer.getCurrentTime() >= endTime())
             ytplayer.pauseVideo();
 }
+
+// Runs when the HTML play button is pressed
+function checkStart() {
+    console.log(ytplayer.getPlayerState());
+    if (ytplayer.getPlayerState() >= 1 && ytplayer.getPlayerState() != 2)
+        if (ytplayer.getCurrentTime() >= startTime()) {
+            // Display the player and resume the volume
+            $('#ytPlayer').css('visibility', 'visible');
+            ytplayer.setVolume(volume);
+            clearInterval(intervalCode);
+        }
+}
+    
 
 function timeURLstr(secs) {
     var m = Math.floor(secs/60);
