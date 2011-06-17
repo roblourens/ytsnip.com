@@ -1,18 +1,16 @@
-html {
-    background-color: #E8E9EE;
-}
-
 body {
-    font-family: "Helvetica Neue", "Helvetica";
-    color: #421111;
+    font-family: 'Lato';
 }
 
 #title {
     margin: 30px;
-    font-size:80px;
+    margin-bottom: 5px;
     text-align:center;
-    text-shadow: 1px 1px 0px #FFF;
-    font-family: 'Architects Daughter';
+}
+
+#subtitle {
+    text-align:center;
+    margin-bottom:10px;
 }
 
 #vidArea {
@@ -30,6 +28,7 @@ body {
     border-style: solid;
     border-width: 1px;
     border-radius: 10px;
+    -moz-border-radius: 10px;
     border-color: DarkGray;
     margin-top: 10px;
     padding: 10px;
@@ -46,18 +45,31 @@ body {
     height: 405px;
 }
 
+#ytPlayer {
+    box-shadow: 0px 0px 50px #000;
+    -webkit-box-shadow: 0px 0px 50px #000;
+    -moz-box-shadow: 0px 0px 50px #000;
+}
+
 #bars {
     position: relative;
-    height: 20px;
+    height: 15px;
+    margin-bottom: 5px;
     width: 720px;
 }
 
 #startMarkBar, #endMarkBar {
-    background-color: DarkGray;
+    background-color: #666;
     height: 15px;
     display: inline;
     width: 0px;
     z-index: -1;
+}
+
+.hint {
+    position: absolute;
+    font-size: 12px;
+    width: 200px;
 }
 
 #endMarkBar {
@@ -87,8 +99,17 @@ body {
     left: 711px;
 }
 
+#startHint {
+    left: 15px;
+}
+
+#endHint {
+    left: 537px;
+}
+
 #vidUrl {
     width:250px;
+    margin-right: 5px;
 }
 
 #inputErr {
