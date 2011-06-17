@@ -52,13 +52,11 @@
   <link rel="stylesheet" href="snip.css" type="text/css" />
   <script type="text/javascript" src="swfobject.js"></script>    
   <script src="https://www.google.com/jsapi?key=ABQIAAAAtkZTR2eMxx0GL_VK6Y_oCBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRCuoGQ8F5lQGWvLPTFj1K0i4mVmA" type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Architects Daughter">
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">  
-  <style>
-    body {
-        font-family: 'Lato';
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Kameron" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Architects Daughter" />
+  <link rel="stylesheet" type="text/css" href="plain.css" />
+
   <script type="text/javascript">
     var start = <?php echo $start ?>;
     var end = <?php echo $end ?>;
@@ -74,14 +72,15 @@
 
   <body>
     <div id="title">YT Snip</div>
+    <div id="subtitle">Link to a snippet of a YouTube video</div>
     <div id="vidArea">
 <?php if (!$play) echo "
         <form id='inputForm' action='javascript: loadVid()'>Video URL or ID: <input id='vidUrl' /><input type='submit' value=\"Load for snippin'\" /></form><div id='inputErr'>There's something wrong with that input... try again</div>"; ?>
         <div id='videoDiv'></div>
         <div id='controls'>
             <div id='bars'>
-            <div id='startMarkBar'><div id='startMark'></div></div>
-            <div id='endMarkBar'><div id='endMark'></div></div>
+            <div id='startMarkBar'><div id='startMark'></div></div><div id='startHint' class='hint'>-> Drag this to mark the clip start!</div>
+            <div id='endHint' class='hint'>Drag this to mark the clip end! <-</div><div id='endMarkBar'><div id='endMark'></div></div>
             </div>
 <?php if (!$play) echo "
             <form id='startForm' action='javascript: updateMarks()'><input id='startTime' /></form>
