@@ -2,6 +2,7 @@ var pad = 6;
 var controlsW = 717;
 var handleW = 3;
 var googleLoaded = false;
+var showedMarks = 0;
 
 google.load("jquery", "1.6.1");
 google.setOnLoadCallback(setup);
@@ -32,16 +33,28 @@ function checkStart() {
 
 function onYouTubePlayerReady(playerId) {
     ytplayer = $("#ytPlayer")[0];
+    ytplayer.addEventListener('onStateChange', 'onYtStateChange');
     
     if (chromeless)
         ytplayer.loadVideoById(vId, start);
 
     play();
+    setInterval(checkFinished, 250);
+}
+
+function onYtStateChange(newState) {
+    if (newState >= 1)
+        if (!showedMarks)
+            showMarks();
+}
+
+function showMarks() {
     setupMark('startMark', timeToXCoord(start));
     setupMark('endMark', timeToXCoord(end));
 
-    $('#controls').show();
-    setInterval(checkFinished, 250);
+    $('#controls').css('visibility', 'visible');
+    $('.hint').css('visibility', 'hidden');
+    showedMarks = 1;
 }
 
 function play() {
