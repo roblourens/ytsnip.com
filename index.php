@@ -48,6 +48,7 @@
 
 
 <html>
+<head>
   <title>YT Snip</title>
   <link rel="stylesheet" href="snip.css" type="text/css" />
   <script type="text/javascript" src="swfobject.js"></script>    
@@ -64,12 +65,23 @@
     var loop = <?php echo $loop ?>;
     var chromeless = <?php echo $chromeless ?>;
     var mute = <?php echo $mute ?>;
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-3718842-9']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
   </script>
 <?php if ($play) echo "
   <script type='text/javascript' src='playscripts.js'></script>";
       else echo "
   <script type='text/javascript' src='snipscripts.js'></script>"; ?>
 
+</head>
   <body>
     <div id="title">YT Snip</div>
     <div id="subtitle">Link to a snippet of a YouTube video</div>
