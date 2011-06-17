@@ -5,6 +5,11 @@ var handleW = 9;
 var vId = '';
 var intervalCode = 0;
 var volume = 100;
+var hintsHidden = 0;
+
+var loop = 0;
+var chromeless = 0;
+var mute = 0;
 
 google.load("jquery", "1.6.1");
 google.load("jqueryui", "1.8.13");
@@ -19,6 +24,29 @@ function onYouTubePlayerReady(playerId) {
 
     // Make the area visible
     $('#controls').css('visibility', 'visible');
+
+    // Setup checkboxes
+    $('#loopCB').change(function(){
+        if ($('#loopCB').attr('checked'))
+            loop = 1;
+        else 
+            loop = 0;
+        updateResultURL();
+    });
+    $('#chromelessCB').change(function(){
+        if ($('#chromelessCB').attr('checked'))
+            chromeless = 1;
+        else
+            chromeless = 0;
+        updateResultURL();
+    });
+    $('#muteCB').change(function(){
+        if ($('#muteCB').attr('checked'))
+            mute = 1;
+        else
+            mute = 0;
+        updateResultURL();
+    });
 }
 
 function validateAndGetId(input) {
@@ -60,6 +88,7 @@ function initControls() {
                         updateMarkBar(event.target.id, ui.position.left);
                         updateVideoPosition(event.target.id, ui.position.left, false);
                         updateResultURL();
+                        clearHints();
                     }
                 };
 
@@ -81,7 +110,6 @@ function loadVid() {
         swfobject.embedSWF("http://www.youtube.com/e/"+vId+"?enablejsapi=1&version=3",
                 "videoDiv", "720", "405", "8", null, null, params, atts);
         $('#videoDiv').html(noFlashErr);
-        $('#controls').show();
     }
     else
         $('#inputErr').fadeIn(errFadeDuration);
@@ -241,5 +269,17 @@ function timeURLstr(secs) {
 }
 
 function updateResultURL() {
-    $('#resultURL').val('http://localhost/~rob/ytsnip/?v='+vId+'&t='+timeURLstr(startTime())+'&e='+timeURLstr(endTime()));
+    var urlStr = 'http://ytsnip.com/?v='+vId+'&t='+timeURLstr(startTime())+'&e='+timeURLstr(endTime());
+    if (loop) urlStr += '&l=1';
+    if (chromeless) urlStr += '&c=1';
+    if (mute) urlStr += '&m=1';
+
+    $('#resultURL').val(urlStr);
+}
+
+function clearHints() {
+    if (!hintsHidden) {
+        $('.hint').hide(1000);
+        hintsHidden = 1;
+    }
 }
