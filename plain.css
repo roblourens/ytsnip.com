@@ -1,0 +1,18 @@
+html {
+    background-color: #E8E9EE;
+}
+
+body {
+    color: #421111;
+}
+
+#title {
+    font-size:80px;
+    text-shadow: 1px 1px 0px #FFF;
+    font-family: 'Architects Daughter';
+}
+
+#subtitle {
+    font-family: 'Architects Daughter';
+    font-size:20px;
+}

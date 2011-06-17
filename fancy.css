@@ -1,0 +1,10 @@
+body {
+    background-image: url('bg.png');
+}
+
+#title {
+    font-size:80px;
+    text-shadow: 1px 1px 0px #444;
+    font-family: 'Kameron';
+    color: #000046;
+}
